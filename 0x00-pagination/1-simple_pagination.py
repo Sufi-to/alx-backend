@@ -29,20 +29,14 @@ class Server:
         corresponding to the range of indexes to return in a list for those
         particular pagination parameters.
         """
-        if page == 0:
-            return (1, page_size)
-
-        if page > 0:
-            return ((page-1)*page_size, page*page_size)
+        return ((page_size * page) - page_size, page*page_size)
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         """Returns the list of data from the required page"""
-        try:
-            assert page > 0 and page_size > 0
-        except Exception:
-            raise AssertionError
+        assert type(page) is int and type(page_size) is int
+        assert page > 0 and page_size > 0
         info = self.dataset()
         index_ran = self.index_range(page, page_size)
         if index_ran[1] > len(info)-1:
             return []
-        return [info[i] for i in range(index_ran[0], index_ran[1])]
+        return info[index_ran[0]: index_ran[1]]
