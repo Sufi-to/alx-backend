@@ -1,3 +1,7 @@
+#!/usr/bin/env python3
+"""Module for returning data from the csv file in a paginated way."""
+
+
 import csv
 import math
 from typing import List
@@ -29,7 +33,7 @@ class Server:
         corresponding to the range of indexes to return in a list for those
         particular pagination parameters.
         """
-        return ((page_size * page) - page_size, page*page_size)
+        return ((page - 1) * page_size, page*page_size)
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         """Returns the list of data from the required page"""
