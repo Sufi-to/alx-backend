@@ -39,12 +39,10 @@ class Server:
         """Returns the list of data from the required page"""
         try:
             assert page > 0 and page_size > 0
-        except:
+        except Exception:
             raise AssertionError
         info = self.dataset()
         index_ran = index_range(page, page_size)
         if index_ran[1] > len(info)-1:
             return []
         return [info[i] for i in range(index_ran[0], index_ran[1])]
-
-
