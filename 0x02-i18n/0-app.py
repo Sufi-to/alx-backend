@@ -7,7 +7,7 @@ from flask import Flask, render_template
 app = Flask(__name__)
 
 
-@app.route("/", methods=['GET'], strict_slashes=False)
+@app.route("/", strict_slashes=False)
 def hello_world():
     """Returns a simple page to render."""
     return render_template('0-index.html')
