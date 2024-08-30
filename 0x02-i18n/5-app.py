@@ -34,13 +34,18 @@ def get_user():
 @app.before_request
 def before_request():
     """Use get_user here"""
-    get_user = get_user()
-    g.user = get_user
+    user_obj = get_user()
+    g.user = user_obj
 
 
 @babel.localeselector
 def get_locale():
     """Sets the locale language"""
+    locale = request.args.get('locale')
+    if locale in app.config['LANGUAGES']:
+        print(locale)
+        return locale
+
     return request.args.get('locale') or \
         request.accept_languages.best_match(app.config['LANGUAGES'])
 
@@ -48,7 +53,7 @@ def get_locale():
 @app.route("/", methods=['GET'], strict_slashes=False)
 def hello_world():
     """Returns a simple page to render."""
-    return render_template('4-index.html')
+    return render_template('5-index.html')
 
 
 if __name__ == '__main__':
