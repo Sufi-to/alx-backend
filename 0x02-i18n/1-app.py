@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Module for a spinning up a simple flask app with a babel object"""
+"""Module for a spinning up a simple flask app with a configed babel object"""
 
 from flask import Flask, render_template
 from flask_babel import Babel
