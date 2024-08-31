@@ -43,7 +43,6 @@ def get_locale():
     """Sets the locale language"""
     locale = request.args.get('locale')
     if locale in app.config['LANGUAGES']:
-        print(locale)
         return locale
 
     return request.args.get('locale') or \
